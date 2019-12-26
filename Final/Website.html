@@ -95,10 +95,9 @@
     //Function to make a color wheel on the canvas
     function fillColorWheel() {
         //Colors from: http://dawnsbrain.com/wp-content/uploads/2009/03/rgb-color-wheel-lg.jpg
-        var hues = [255, 125, 0]
         var rOuter = [255, 255, 255, 125, 0, 0, 0, 0, 0, 125, 255, 255];
         var gOuter = [0, 125, 255, 255, 255, 255, 255, 125, 0, 0, 0, 0];
-        var bOuter = [0, 0, 0, 0, 125, 255, 255, 255, 255, 255, 125, 0];
+        var bOuter = [0, 0, 0, 0, 0, 125, 255, 255, 255, 255, 255, 125];
         var radius = length / 2 - 5;
         ctx.strokeStyle = 'black';
         for (var i = 0; i < rOuter.length; i++) {
