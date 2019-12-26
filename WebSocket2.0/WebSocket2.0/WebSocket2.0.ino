@@ -40,7 +40,6 @@ void setup() {
     Serial.println(ssid);
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
-    Serial.println(WiFi.hostname);
     
     server.on("/", [](){
     server.send(200, "text/html", WebPage);
