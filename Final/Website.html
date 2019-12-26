@@ -103,7 +103,7 @@
         for (var i = 0; i < rOuter.length; i++) {
             ctx.beginPath();
             ctx.moveTo(length / 2, length / 2);
-            ctx.arc(length / 2, length / 2, radius , i * 2 * Math.PI / rOuter.length, (i + 1) * 2* Math.PI / rOuter.length);
+            ctx.arc(length / 2, length / 2, radius , i * 2 * Math.PI / rOuter.length - Math.PI / 2, (i + 1) * 2* Math.PI / rOuter.length - Math.PI / 2);
             ctx.closePath();
             ctx.fillStyle = 'rgb(' + rOuter[i] + ' ,' + gOuter[i] + ',' + bOuter[i] + ')';
             ctx.fill();
@@ -116,7 +116,7 @@
         for (var i = 0; i < rInner.length; i++) {
             ctx.beginPath();
             ctx.moveTo(length / 2, length / 2);
-            ctx.arc(length / 2, length / 2, innerRadius, i * 2 * Math.PI / rInner.length, (i + 1) * 2* Math.PI / rInner.length);
+            ctx.arc(length / 2, length / 2, innerRadius, i * 2 * Math.PI / rInner.length - Math.PI / 2, (i + 1) * 2* Math.PI / rInner.length - Math.PI / 2);
             ctx.closePath();
             ctx.fillStyle = 'rgb(' + rInner[i] + ' ,' + gInner[i] + ',' + bInner[i] + ')';
             ctx.fill();
