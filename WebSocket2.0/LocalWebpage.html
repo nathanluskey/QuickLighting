@@ -24,7 +24,7 @@
     <script>
     var Socket;
     function start() {
-        Socket=new WebSocket('ws://172.20.10.5:81/');
+        Socket=new WebSocket('wss://172.20.10.5:81/');
         Socket.onmessage=function(evt) {
             document.getElementById("rxConsole").value +=evt.data;
         }
