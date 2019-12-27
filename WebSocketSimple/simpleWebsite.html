@@ -20,17 +20,19 @@
                 var color = 'rgb(' + r[i] + ',' + g[i] + ',' + b[i] + ')';
                 var btn = document.createElement("button");
                 btn.id = color;
-                btn.className = "btn"
+                btn.className = "btn";
                 btn.addEventListener("click", function(e) {
-                    colorSend = 'rgba' + this.id.slice(3, -1);// + ','+ document.getElementById('a').value + ')';
+                    colorSend = 'rgba' + this.id.slice(3, -1);
                     changeColor();
                 });
                 btn.style.background = color;
                 var theEnd = document.getElementById("theEnd");
                 theEnd.insertAdjacentElement("beforeend", btn);
-                //document.body.appendChild(btn);
             }
-            Socket=new WebSocket('wss://172.20.10.5:81/');
+            Socket = new WebSocket('ws://172.20.10.3:81/');
+            Socket.onopen = function(event) {
+              console.log("WebSocket is open now.");
+            };
         }
 
         function changeColor() {
