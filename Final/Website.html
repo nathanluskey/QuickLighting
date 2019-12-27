@@ -13,7 +13,6 @@
         border: 10px solid rgb(0,0,0);
         color: white;
         text-align: center;
-        text-decoration: none;
         display: inline-block;
         font-size: 7vh;
     }
@@ -69,7 +68,7 @@
 
     function start(){
         Socket = new WebSocket('ws://172.20.10.5:81/');
-        
+
         Socket.onopen = function(event) {
             console.log("WebSocket is open now.");
         };
