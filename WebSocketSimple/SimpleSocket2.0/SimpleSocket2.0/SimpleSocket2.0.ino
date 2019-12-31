@@ -82,14 +82,16 @@ void setup() {
     digitalWrite(LED_RED, 1);
     digitalWrite(LED_GREEN, 1);
     digitalWrite(LED_BLUE, 1);
-    
+
+    //Configure a static IP on a network
     IPAddress staticIP(172, 20, 10, 5); //ESP static ip
     IPAddress gateway(172, 20, 10, 1);   //IP Address of your WiFi Router (Gateway)
     IPAddress subnet(255, 255, 255, 0);  //Subnet mask
     IPAddress dns(8, 8, 8, 8);  //DNS
     WiFi.config(staticIP, subnet, gateway, dns);
-    
     WiFi.begin("Nathan's IPhone", "password");
+
+    //WifiMulti
     WiFiMulti.addAP("Nathan's IPhone", "password");
 
     while(WiFiMulti.run() != WL_CONNECTED) {
@@ -110,8 +112,6 @@ void setup() {
 
     // handle index
     server.on("/", []() {
-        // send index.html
-        //server.send(200, "text/html", "<html><head><script>var connection = new WebSocket('ws://'+location.hostname+':81/', ['arduino']);connection.onopen = function () {  connection.send('Connect ' + new Date()); }; connection.onerror = function (error) {    console.log('WebSocket Error ', error);};connection.onmessage = function (e) {  console.log('Server: ', e.data);};function sendRGB() {  var r = parseInt(document.getElementById('r').value).toString(16);  var g = parseInt(document.getElementById('g').value).toString(16);  var b = parseInt(document.getElementById('b').value).toString(16);  if(r.length < 2) { r = '0' + r; }   if(g.length < 2) { g = '0' + g; }   if(b.length < 2) { b = '0' + b; }   var rgb = '#'+r+g+b;    console.log('RGB: ' + rgb); connection.send(rgb); }</script></head><body>LED Control:<br/><br/>R: <input id=\"r\" type=\"range\" min=\"0\" max=\"255\" step=\"1\" oninput=\"sendRGB();\" /><br/>G: <input id=\"g\" type=\"range\" min=\"0\" max=\"255\" step=\"1\" oninput=\"sendRGB();\" /><br/>B: <input id=\"b\" type=\"range\" min=\"0\" max=\"255\" step=\"1\" oninput=\"sendRGB();\" /><br/></body></html>");
         server.send(200, "text/html", "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charset=\"utf-8\"><title>Lighting</title><style>.btn {width: 30vw;height: 30vh;}</style><script>var Socket, toSend, colorSend;function start() {var r = [255, 255, 255, 255, 255, 255, 125, 0, 0, 0, 0, 0, 125, 255, 255];var g = [255, 214, 147, 0, 125, 255, 255, 255, 255, 255, 125, 0, 0, 0, 0];var b = [255, 170, 71, 0, 0, 0, 0, 0, 125, 255, 255, 255, 255, 255, 125];for (var i = 0; i < r.length; i++) {var color = 'rgb(' + r[i] + ',' + g[i] + ',' + b[i] + ')';var btn = document.createElement(\"button\");btn.id = color;btn.className = \"btn\";btn.addEventListener(\"click\", function(e) {colorSend = 'rgba' + this.id.slice(3, -1);changeColor();});btn.style.background = color;var theEnd = document.getElementById(\"theEnd\");theEnd.insertAdjacentElement(\"beforeend\", btn);}Socket = new WebSocket('ws://172.20.10.5:81/');Socket.onopen = function(event) {console.log(\"WebSocket is open now.\");};}function changeColor() {toSend = colorSend + ','+ document.getElementById('a').value + ')';console.log(toSend);document.body.style.backgroundColor = toSend;Socket.send(toSend);}</script></head><body onload=\"javascript:start();\"><center id=\"theEnd\"><input type=\"range\" min=\"0\" max=\"1\" value=\"0.5\" step = \"0.01\" class=\"slider\" id=\"a\" oninput=\"changeColor()\"><br></center></body></html>");
     });
 
