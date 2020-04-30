@@ -66,20 +66,12 @@
     var color, r, g ,b, a; //Used for color settings
     var Socket; //used for the websocket
 
-    function start(){
+    //runs when webpage starts
+    function start() {
         Socket = new WebSocket('ws://172.20.10.5:81/');
-
         Socket.onopen = function(event) {
             console.log("WebSocket is open now.");
         };
-
-        Socket.onmessage = function(evt) {
-            document.getElementById("testing").innerHTML += evt.data;
-        };
-    }
-
-    //runs when webpage starts
-    function start() {
         canvas.addEventListener("mousedown", function(e)
         {
             getColor(canvas, e);
